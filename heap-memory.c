@@ -4,9 +4,8 @@
 #define ALPHABET_LEN 26
 
 char *string_malloc(size_t size);
-
-char *string_malloc(size_t size);
-char *string_malloc(size_t size);
+char *string_calloc(size_t size);
+char *string_realloc(char *original, size_t new_len);
 void fill_lowercase(char *str, size_t len);
 
 
@@ -15,8 +14,21 @@ int main()
     char *str = string_calloc(ALPHABET_LEN + 1);
     fill_lowercase(str, ALPHABET_LEN + 1);
     printf("%s\n", str);
+    str = string_realloc(str, (2 * ALPHABET_LEN) + 1);
+    fill_lowercase(&str[ALPHABET_LEN], ALPHABET_LEN + 1);
+    printf("%s\n", str);
     free(str);
     str = NULL;
+}
+
+char *string_realloc(char *original, size_t new_len)
+{
+    original = realloc(original, new_len);
+    if (original == NULL) {
+        fprintf(stderr, "Out of Memory");
+        exit(EXIT_FAILURE);
+    }
+    return original;
 }
 
 char *string_calloc(size_t size)
