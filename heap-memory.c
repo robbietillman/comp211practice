@@ -14,9 +14,11 @@ int main()
     char *str = string_calloc(ALPHABET_LEN + 1);
     fill_lowercase(str, ALPHABET_LEN + 1);
     printf("%s\n", str);
+    printf("%p\n", str);
     str = string_realloc(str, (2 * ALPHABET_LEN) + 1);
     fill_lowercase(&str[ALPHABET_LEN], ALPHABET_LEN + 1);
     printf("%s\n", str);
+    printf("%p\n", str);
     free(str);
     str = NULL;
 }
